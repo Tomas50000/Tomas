@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Menu;
 use App\Http\Requests\StoreDishRequest;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 
 class DishController extends Controller
 {
@@ -42,9 +45,10 @@ class DishController extends Controller
     {
       //dd($request);
       $timestamp = Carbon::now()->toAtomString(); //prideda laika prie foto
-      dd($timestamp);
+
       $name = $request->file('photo')->getClientOriginalName();
       $path = $request->file('photo')->storeAs('public/image',$timestamp.$name);
+      Image::make(Input::file('photo'))->resize(100, 200)->save(storage_path('app/public/image/'.$name));
       $dish= new Dish();
       $dish->title = $request->title;
       $dish->price = $request->price;
@@ -90,7 +94,9 @@ class DishController extends Controller
     {
 
       if($request->file('photo')) {
-       $path = $request->file('photo')->store('public/image');
+       $path = $request->file('photo')->getClientOriginalName();
+       $path = $request->file('photo')->storeAs('public/image',$timestamp.$name);
+       Image::make(Input::file('photo'))->resize(300, 200)->save(storage_path('app/public/image/'.$name));
        $oldPath = 'public/image/';
        if (!empty($dish->photo)) {
          Storage::delete($oldPath.$dish->photo);
