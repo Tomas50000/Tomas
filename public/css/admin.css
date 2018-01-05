@@ -348,3 +348,8 @@ h1.page-header {
         margin: 0;
     }
 }
+
+ul li img {
+  height: 150px;
+
+}

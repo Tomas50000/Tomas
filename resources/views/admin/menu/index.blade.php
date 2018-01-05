@@ -3,7 +3,15 @@
   <div class="col-md-4">
     <ul class="list-group">
     @foreach($menus as $menu)
-      <li class="list-group-item clearfix">{{$menu->title}} <a class="btn btn-danger pull-right" href="#">Delete</a><a class="btn btn-primary pull-right" href="#">Edit</a></li>
+      <li class="list-group-item clearfix">{{$menu->title}}
+        <form action="{{ route('menu.destroy', $menu) }}" method="POST"
+                 style="display: inline"
+                 onsubmit="return confirm('Are you sure?');">
+               <input type="hidden" name="_method" value="DELETE">
+               {{ csrf_field() }}
+               <button class="btn btn-danger pull-right">Delete</button>
+           </form>
+        <a class="btn btn-primary pull-right" href="{{route('menu.edit', $menu)}}">Edit</a></li>
     @endforeach
   </ul>
   <ul class="">

@@ -11,14 +11,18 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/reservation', 'ReservationController@create')->name('reservation')->middleware('auth');
+Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
+
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function() {
   Route::get('/', 'AdminController@index')->name('admin');
   Route::resource('/menu', 'MenuController');
+  Route::resource('/dish', 'DishController');
 });

@@ -2,9 +2,12 @@
 @section('content')
 
 <form class="" action="{{route('menu.store')}}" method="post">
-  {{csrf_field()}}
-  <input type="text" name="" value="" placeholder="Menu">
-  <input class="btn btn-success" type="submit"></input>
 
+  {{csrf_field()}}
+  <div class="form_group">
+    <label for="Menu">Menu</label>
+    <input type="text" class="form-control" name="title">
+  </div>
+  <button type="submit" class="btn btn-primary" name="button">Create</button>
 </form>
 @endsection

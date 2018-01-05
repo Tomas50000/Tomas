@@ -37,6 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><a href="{{ route('reservation')}}" >Rezervacija</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

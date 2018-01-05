@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreMenuRequest;
 
 class MenuController extends Controller
 {
@@ -25,6 +26,7 @@ class MenuController extends Controller
      */
     public function create()
     {
+      $this->authorize('create', Menu::class);
         return view('admin.menu.create');
     }
 
@@ -34,9 +36,10 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMenuRequest $request)
     {
-        //
+        Menu::create($request->all());
+        return redirect('admin/menu');
     }
 
     /**
@@ -47,7 +50,7 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+
     }
 
     /**
@@ -58,7 +61,8 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        $this->authorize('create', Menu::class);
+        return view('admin.menu.edit', ['menu'=>$menu]);
     }
 
     /**
@@ -68,9 +72,11 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(StoreMenuRequest $request, Menu $menu)
     {
-        //
+        $this->authorize('create', Menu::class);
+        $menu->update($request->all());
+        return redirect('admin/menu')->with(['message'=>'Sekmingai issaugota']);
     }
 
     /**
@@ -81,6 +87,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        $this->authorize('create', Menu::class);
+        $menu->delete();
+        return redirect('admin/menu');
     }
 }
