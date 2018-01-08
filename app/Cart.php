@@ -31,4 +31,9 @@ class Cart
       $this->totalQty++;
       $this->totalPrice+= $dish->price;
     }
+    public function delteByOne ($dish, $id){
+      $this->totalQty--;
+      $this->totalPrice-=$dish->price;
+      $this->items[$dish->id]['qty']--;
+    }
 }

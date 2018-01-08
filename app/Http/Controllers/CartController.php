@@ -22,4 +22,8 @@ class CartController extends Controller
     public function ajaxFlush() {
       Session::flush();
     }
+    public function index() {
+      $cart = Session::has('cart') ? Session::get('cart') :null;
+      return view('cart.index', compact('cart'));
+    }
 }
