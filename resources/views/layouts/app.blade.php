@@ -38,6 +38,12 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ route('reservation')}}" >Rezervacija</a></li>
+                        <li> <a href="#">Cart<span id="cartid">
+                          @if (Session::has('cart'))
+                          {{Session::get('cart')->totalQty}}
+                          @else
+                          0
+                          @endif </span></a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

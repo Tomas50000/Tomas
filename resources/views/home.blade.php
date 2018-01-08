@@ -14,7 +14,7 @@
             							<h3 style="margin:5px auto;"><label>${{$dish->price}}</label></h3>
         							</div>
             							<div class="col-md-8 col-sm-8 col-xs-8">
-            								<a href="#" class="btn btn-success btn-product"><span class="glyphicon glyphicon-shopping-cart"></span> Add 2 Cart</a>
+            								<a href="#" data-id="{{$dish->id}}" class="btn btn-success btn-product cart"><span class="glyphicon glyphicon-shopping-cart"></span> Add 2 Cart</a>
                 					</div>
             				</div>
 
@@ -25,4 +25,39 @@
     </div>
   </div>
 </div>
+
+<script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $('a.cart').click(function () {
+        var dish_id = $(this).data('id');
+        var url = "/cart";
+        console.log(dish_id);
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {id : dish_id},
+          dataType: "json",
+          success: function (data) {
+            $('#cartid').html(data.totalQty);
+            console.log(data.totalQty);
+          },
+          error: function (data) {
+            console.log('Error');
+          }
+        })
+      });
+    });
+  </script>
+
 @endsection

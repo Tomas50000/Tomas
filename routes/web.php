@@ -20,9 +20,10 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/reservation', 'ReservationController@create')->name('reservation')->middleware('auth');
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
-
+Route::post('/cart', 'CartController@ajaxAdd')->name('cart.add');
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function() {
   Route::get('/', 'AdminController@index')->name('admin');
   Route::resource('/menu', 'MenuController');
   Route::resource('/dish', 'DishController');
+
 });
