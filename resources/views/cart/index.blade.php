@@ -18,14 +18,14 @@
    </thead>
    <tbody>
     @if($cart)
-    @foreach(($cart->items as $item )
+    @foreach($cart->items as $item )
      <tr>
        <td><input type="checkbox" name="" value=""></td>
-       <td>{{$itmes['item']['title']}}</td>
-       <td>{{$itmes['qty']}}</td>
-       <td>{{$itmes['price']}}</td>
-       <td>{{$items['price']}}</td>
-       <td><button type="button" class="btn btn-danger">Delete</button></td>
+       <td>{{$item['item']['title']}}</td>
+       <td>{{$item['qty']}}</td>
+       <td>{{$item['item']['price']}}</td>
+       <td>{{$item['price']}}</td>
+       <td><a href="{{route('deleteByOne', $item['item']['id'])}}" type="button" class="btn btn-danger">DeleteByOne</a> <a href="{{route('cart.deleteAll', $items['item']['id'])}}" type="button" class="btn"> </a></td>
      </tr>
      @endforeach
      @else
@@ -35,7 +35,7 @@
      @endif
    </tbody>
  </table>
- <a href="#"><button type="button" class="btn btn-primary">aaaa</button></a>
+ <a href="{{route('deleteCart', $item['item']['id'])}}"><button type="button" class="btn btn-primary">544</button></a>
  <button type="button" class="btn btn-danger">Delete</button>
 </div>
 @endsection

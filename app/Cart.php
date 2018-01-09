@@ -27,13 +27,33 @@ class Cart
 
       $storeItem['qty']++;
       $storeItem['price'] = $storeItem['qty'] * $dish->price;
-      $this->items = $storeItem;
+      $this->items[$dish->id] = $storeItem;
       $this->totalQty++;
       $this->totalPrice+= $dish->price;
     }
-    public function delteByOne ($dish, $id){
+    // public function deleteByOne ($dish, $id){
+    //   $this->totalQty--;
+    //   $this->totalPrice-=$dish->price;
+    //   $this->items[$dish->id]['qty']--;
+    // }
+    public function deleteByOne($id) {
+      $this->items[$id]['qty']--;
+      $this->items[$id]['price']-=$this->items[$id]['item']['price'];
       $this->totalQty--;
-      $this->totalPrice-=$dish->price;
-      $this->items[$dish->id]['qty']--;
+      $this->totalPrice-=$this->items[$id]['item']['price'];
+
+      if($this->items[$id]['qty']<=0) {
+        unset($this->items[$id]);
+      }
+    }
+      public function deleteAll($id) {
+        $this->totalPrice-= $this->items[$id]['price']
+        $this->totalQty--;
+        unset($this->items[$id]);
+    }
+    public function deleteAll($id) {
+      $this->totalQty = 0;
+      $this->totalQty--;
+      $this->items = array();
     }
 }

@@ -22,6 +22,9 @@ Route::get('/reservation', 'ReservationController@create')->name('reservation')-
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
 Route::post('/cart/add', 'CartController@ajaxAdd')->name('cart.add');
 Route::get('/cart', 'CartController@index')->name('cart');
+Route::get('/cart/{id}', 'CartController@deleteByOne')->name('deleteByOne');
+Route::get('/cart/all/{id}', 'CartController@deleteAll')->name('cart.deleteAll');
+Route::get('/cart/cart', 'CartController@deleteCart')->name('cart.deleteCart');
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function() {
   Route::get('/', 'AdminController@index')->name('admin');
   Route::resource('/menu', 'MenuController');
