@@ -36,17 +36,17 @@ class CartController extends Controller
       return view('cart.index', compact('cart'));
     }
     public function deleteAll(Request $request, $id) {
-      $id= $request->id
+      $id= $request->id;
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
       $quatity = $cart->deleteAll($id);
       $request->session()->put('cart', $cart);
       return view('cart.index', compact('cart'));
     }
-    public function deleteCart(){
+    public function deleteCart(Request $request, $id) {
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
-      $cart->deleteAll();
+      $cart->deleteAll($id);
       $request->session()->forget('cart');
       return view('cart.index', compact('cart'));
     }

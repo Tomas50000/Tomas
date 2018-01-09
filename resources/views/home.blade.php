@@ -14,7 +14,7 @@
             							<h3 style="margin:5px auto;"><label>${{$dish->price}}</label></h3>
         							</div>
             							<div class="col-md-8 col-sm-8 col-xs-8">
-            								<a href="#" data-id="{{$dish->id}}" class="btn btn-success btn-product cart"><span class="glyphicon glyphicon-shopping-cart"></span> Add 2 Cart</a>
+            								<a  data-id="{{$dish->id}}" class="cart btn btn-success btn-product cart"><span class="glyphicon glyphicon-shopping-cart"></span> Add 2 Cart</a>
                 					</div>
             				</div>
 
@@ -50,10 +50,10 @@
           dataType: "json",
           success: function (data) {
             $('#cartid').html(data.totalQty);
-            console.log(data.totalQty);
+            console.log(data);
           },
           error: function (data) {
-            console.log('Error');
+            console.log('Error', data);
           }
         })
       });

@@ -25,7 +25,7 @@
        <td>{{$item['qty']}}</td>
        <td>{{$item['item']['price']}}</td>
        <td>{{$item['price']}}</td>
-       <td><a href="{{route('deleteByOne', $item['item']['id'])}}" type="button" class="btn btn-danger">DeleteByOne</a> <a href="{{route('cart.deleteAll', $items['item']['id'])}}" type="button" class="btn"> </a></td>
+       <td><a href="{{route('deleteByOne', $item['item']['id'])}}" type="button" class="btn btn-danger">DeleteByOne</a> <a href="{{route('cart.deleteAll', $item['item']['id'])}}" type="button" class="btn"> </a><a href="{{route('deleteCart', $item['item']['id'] )}}"><button type="button" class="btn btn-primary">Delete All</button></a></td>
      </tr>
      @endforeach
      @else
@@ -35,7 +35,7 @@
      @endif
    </tbody>
  </table>
- <a href="{{route('deleteCart', $item['item']['id'])}}"><button type="button" class="btn btn-primary">544</button></a>
- <button type="button" class="btn btn-danger">Delete</button>
+
+ <button type="button" class="btn btn-danger">Check out</button>
 </div>
 @endsection

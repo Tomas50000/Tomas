@@ -47,13 +47,13 @@ class Cart
       }
     }
       public function deleteAll($id) {
-        $this->totalPrice-= $this->items[$id]['price']
-        $this->totalQty--;
+        $this->totalPrice-= $this->items[$id]['price'];
+        $this->totalQty-= $this->items[$id]['qty'];
         unset($this->items[$id]);
     }
-    public function deleteAll($id) {
-      $this->totalQty = 0;
-      $this->totalQty--;
-      $this->items = array();
-    }
+    // public function deleteAll() {
+    //   $this->totalQty = 0;
+    //   $this->totalQty--;
+    //   $this->items = array();
+    // }
 }
