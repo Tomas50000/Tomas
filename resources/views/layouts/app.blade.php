@@ -53,6 +53,27 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                        <div class="">
+                            <form class="navbar-form navbar-left" role="search">
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                              </div>
+                              <div class="">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Dropdown link
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <option class="dropdown-item" href="#">Action</option>
+                                  <option class="dropdown-item" href="#">Another action</option>
+                                  <option class="dropdown-item" href="#">Something else here</option>
+                                </div>
+                              </div>
+                              <button type="submit" class="btn btn-default">Submit</button>
+                            <div class="dropdown show">
+
+                            </div>
+                          </form>
+                        </div>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -65,6 +86,7 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+                                        <form class="navbar-form navbar-left" role="search">
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}

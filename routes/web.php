@@ -23,7 +23,11 @@ Route::get('/reservation', 'ReservationController@create')->name('reservation')-
 Route::post('/reservation/store', 'ReservationController@store')->name('reservation.store')->middleware('auth');
 Route::post('/cart/add', 'CartController@ajaxAdd')->name('cart.add');
 Route::get('/cart/{id}', 'CartController@deleteByOne')->name('deleteByOne');
+Route::get('/order/checkout', 'OrderController@checkout')->name('order.checkout')->middleware('auth');
+Route::get('/profile', 'OrderController@profile')->name('profile')->middleware('profile');
 Route::get('/cart/delete/{id}', 'CartController@deleteCart')->name('deleteCart');
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('social.login');
+Route::get('login/{driver}/callback', 'Auth\LoginController@redirectToProvider');
 Route::get('/cart/all/{id}', 'CartController@deleteAll')->name('cart.deleteAll');
 Route::group(['middleware'=>['auth', 'admin'], 'prefix'=>'admin'], function() {
   Route::get('/', 'AdminController@index')->name('admin');

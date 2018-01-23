@@ -36,6 +36,6 @@
    </tbody>
  </table>
 
- <button type="button" class="btn btn-danger">Check out</button>
+ <a href="{{route('order.checkout')}}" type="button" class="btn btn-danger">Check out</a>
 </div>
 @endsection
